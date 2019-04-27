@@ -1,6 +1,6 @@
 # Prompter - a prompt generator for Bash
 
-This is a reimplementation of the great prompt generator [powerline-shell](https://raw.github.com/b-ryan/powerline-shell) in the Rust programming language.
+This is a reimplementation of the great prompt generator [powerline-shell](https://github.com/b-ryan/powerline-shell) in the Rust programming language.
 
 This is how it looks like:
 
