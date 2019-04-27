@@ -1,0 +1,73 @@
+# Compile
+CARGO_INCREMENTAL=0 cargo run
+
+# Debug Mac:
+sudo rust-lldb target/debug/prompter
+
+b main.rs:12
+r
+
+# Debug Linux:
+
+rust-gdb target/debug/prompter
+
+#  ... or to debug a test:
+
+rust-gdb rust-gdb target/debug/prompter-06635cf3b487a9db
+
+    
+b main.rs:12
+r
+
+# do a release run:
+cargo run --release
+
+# Run tests without capturing stdout/stderr:
+cargo test -- --nocapture
+
+# run a single test:
+cargo test segments::git::test::test_regex_differences
+    
+    
+# Docker specific:
+docker build . -t ms140569/prompter
+
+docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it ms140569/prompter bash
+
+# inside:
+cd /root/prompter
+
+cargo run -- 1
+
+# GNU Debugging:
+rust-gdb target/debug/prompter
+set args 1
+b main.rs:151
+r
+
+tui enable
+
+--------------------------------------------------------------------------------------------
+    
+function _update_ps1() {
+    PS1=$(prompter $?)
+}
+
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi    
+
+function _update_ps1() { PS1=$(prompter $?); }
+PROMPT_COMMAND="_update_ps1"
+
+--------------------------------------------------------------------------------------------
+
+TODO:
+
+
+--------------------------------------------------------------------------------------------
+    
+Measure:    
+
+while true; do ((time $HOME/prj/prompter/target/debug/prompter 0 ) 2>&1 |grep real ); done
+    

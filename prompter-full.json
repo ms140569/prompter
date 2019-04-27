@@ -1,0 +1,35 @@
+{
+  "segments": [
+    "virtual_env", 
+    "username", 
+    "hostname", 
+    "read_only",
+    "ssh", 
+    "cwd", 
+    "git", 
+    "exit_code",
+    {
+      "type": "env",
+      "var": "LANG"
+    },
+    {
+      "type": "stdout",
+      "command": ["uname", "-r"],
+      "fg_color": 254,
+      "bg_color": 161
+    },
+    "jobs", 
+    "root"
+  ],
+    "theme": "default",
+    "hostname": {
+        "colorize": false
+    },
+    "cwd": {
+        "max_depth": 5,
+        "mode": "expand",
+        "max_dir_size": 0,
+        "full_cwd": true
+    }
+
+}
